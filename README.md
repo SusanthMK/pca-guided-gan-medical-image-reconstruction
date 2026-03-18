@@ -9,119 +9,136 @@ A PCA-guided generative framework for reconstructing incomplete MRI images using
 
 # PCA-Guided Multimodal GAN for MRI Image Reconstruction
 
+---
+
 ## Overview
 
-This project presents a robust deep learning framework for reconstructing incomplete or corrupted Magnetic Resonance Imaging (MRI) data using a hybrid approach that combines **Principal Component Analysis (PCA)** and **Generative Adversarial Networks (GANs)**.
+This project presents a deep learning-based framework for reconstructing incomplete or corrupted MRI images using a hybrid approach that combines **Principal Component Analysis (PCA)** and **Generative Adversarial Networks (GANs)**.
 
-MRI scans often suffer from missing modalities, motion artifacts, or acquisition limitations, which can reduce diagnostic reliability. Traditional reconstruction techniques fail to capture complex anatomical structures, especially under severe corruption.
+MRI images often suffer from missing modalities, motion artifacts, and acquisition limitations. Traditional reconstruction techniques fail to recover fine anatomical structures and cannot effectively utilize multimodal relationships.
 
-To address this, the proposed system leverages:
+To address this, the proposed system integrates:
 
-* PCA for efficient feature extraction and dimensionality reduction
-* GANs as a generative AI component for refining latent representations
-* Inverse PCA for reconstructing high-quality MRI images
+* PCA for dimensionality reduction and feature extraction
+* GAN (Generative AI) for feature refinement and reconstruction
+* Inverse PCA for restoring high-quality MRI images
 
 ---
 
 ## Problem Statement
 
-MRI datasets frequently contain incomplete or degraded information due to:
+MRI datasets frequently contain missing or corrupted data due to:
 
 * Motion artifacts
-* Hardware limitations
 * Incomplete acquisition
+* Hardware limitations
 
-Existing reconstruction methods:
+Existing methods:
 
-* Fail to preserve fine anatomical details
-* Cannot effectively utilize multimodal relationships
-* May produce unrealistic outputs (in case of standard GANs)
+* Fail to preserve anatomical accuracy
+* Cannot handle multimodal dependencies effectively
+* May generate unrealistic outputs
 
-This creates a need for a **reliable and anatomically consistent reconstruction framework**.
+This motivates the need for a **reliable and anatomically consistent reconstruction framework**.
 
 ---
 
-## Proposed Approach
-
-The model follows a structured pipeline:
+## Architecture
 
 **PCA → GAN (Generative AI) → Inverse PCA**
 
-### 1. PCA (Feature Extraction)
+### PCA (Feature Extraction)
 
-* Reduces high-dimensional MRI data
-* Retains maximum variance
-* Removes redundancy and noise
+* Reduces dimensionality while preserving variance
+* Extracts important structural information
 
-### 2. GAN (Feature Refinement)
+### GAN (Feature Refinement)
 
 * Generator reconstructs missing or corrupted regions
 * Discriminator enforces realism
-* Learns non-linear anatomical structures
+* Learns complex non-linear anatomical structures
 
-### 3. Inverse PCA (Reconstruction)
+### Inverse PCA (Reconstruction)
 
-* Maps refined latent features back to image space
-* Produces final reconstructed MRI images
+* Maps refined features back to image space
+* Produces final reconstructed MRI
 
 ---
 
 ## Dataset
 
-The model is trained on brain MRI datasets containing multimodal scans such as:
+The model is trained using **Brain MRI datasets (BraTS 2021)** 
 
-* T1
-* T2
-* FLAIR
+### Dataset Details
 
-The data is:
+* Multimodal MRI scans:
 
-* Preprocessed (normalized, resized, skull-stripped)
-* Structured for deep learning applications
+  * T1
+  * T1-contrast (T1ce)
+  * T2
+  * FLAIR
+
+* Data characteristics:
+
+  * Collected from multiple hospitals and MRI scanners
+  * Expert-annotated for clinical reliability
+  * Provided in **NIfTI format**
+
+### Preprocessing Steps
+
+* Image normalization
+* Resizing to standard resolution
+* Skull stripping
+* Noise removal
+
+### Why Multimodal Data?
+
+Each modality provides complementary information:
+
+* T1 → anatomical structure
+* T2 → fluid detection
+* FLAIR → lesion highlighting
 
 ---
 
 ## Methodology
 
 1. MRI data collection from standard datasets
-2. Data preprocessing (normalization, resizing, noise removal)
+2. Data preprocessing and normalization
 3. Simulation of missing or corrupted regions
 4. PCA-based feature extraction
 5. GAN training (Generator + Discriminator)
-6. Reconstruction using refined latent features
-7. Inverse PCA transformation
-8. Performance evaluation using quantitative metrics
+6. Feature refinement using GAN
+7. Inverse PCA reconstruction
+8. Evaluation using PSNR and SSIM
 
 ---
 
 ## Evaluation Metrics
 
-The model performance is evaluated using:
-
 * **PSNR (Peak Signal-to-Noise Ratio)**
   Measures reconstruction quality
 
 * **SSIM (Structural Similarity Index)**
-  Measures structural similarity with ground truth
-
-These metrics ensure both **visual quality and anatomical consistency**.
+  Measures structural similarity and perceptual quality
 
 ---
 
 ## Results
 
-The model demonstrates strong reconstruction performance:
+The model demonstrates:
 
-* High PSNR values indicating low reconstruction error
-* High SSIM values indicating preserved structural integrity
+* High PSNR values (low reconstruction error)
+* High SSIM values (strong structural preservation)
 * Accurate reconstruction of missing MRI regions
 
-### Visual Outputs
+### Outputs
 
-* Reconstructed MRI images
+* MRI reconstruction images
 * Error heatmaps
-* PSNR and SSIM distributions
-* Reconstruction error analysis
+* PSNR distribution
+* SSIM distribution
+* Reconstruction error per image
 
 ---
 
@@ -130,8 +147,9 @@ The model demonstrates strong reconstruction performance:
 ```plaintext
 project/
 │
-├── MRI_Reconstruction_Code.ipynb   # Model implementation
-├── results/                        # Output visualizations
+├── MRI_Reconstruction_Code.ipynb
+│
+├── results/
 │   ├── MRI_RECON.png
 │   ├── Output.png
 │   ├── HeatMap.png
@@ -157,32 +175,30 @@ project/
 
 ## Key Contributions
 
-* Hybrid PCA + GAN architecture for medical image reconstruction
-* Integration of dimensionality reduction with generative modeling
-* Improved reconstruction quality for incomplete MRI data
-* Quantitative evaluation using PSNR and SSIM
+* Hybrid PCA + GAN framework for MRI reconstruction
+* Integration of statistical and deep learning approaches
+* Improved reconstruction accuracy for incomplete MRI data
+* Quantitative validation using PSNR and SSIM
 
 ---
 
 ## Applications
 
 * Medical image reconstruction
+* Radiology and diagnostics
 * Clinical decision support systems
-* Radiology and diagnostic imaging
-* AI-assisted healthcare systems
+* AI-assisted healthcare
 
 ---
 
 ## Conclusion
 
-This project presents a reliable and efficient framework for reconstructing incomplete MRI data using a combination of PCA and GAN-based learning.
+This project presents a reliable and efficient framework for reconstructing incomplete MRI images using a combination of PCA and GAN-based learning.
 
-By integrating statistical feature extraction with generative AI, the model achieves:
+By integrating dimensionality reduction with generative AI, the system achieves:
 
 * High-quality reconstruction
 * Preservation of anatomical structures
 * Improved robustness over traditional methods
-
-This approach highlights the potential of combining classical techniques with deep learning for advanced medical imaging applications.
 
 ---
