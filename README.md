@@ -13,6 +13,7 @@ A PCA-guided generative framework for reconstructing incomplete MRI images using
 
 ## Overview
 
+
 This project presents a deep learning-based framework for reconstructing incomplete or corrupted MRI images using a hybrid approach that combines **Principal Component Analysis (PCA)** and **Generative Adversarial Networks (GANs)**.
 
 MRI images often suffer from missing modalities, motion artifacts, and acquisition limitations. Traditional reconstruction techniques fail to recover fine anatomical structures and cannot effectively utilize multimodal relationships.
